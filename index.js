@@ -66,14 +66,14 @@ function Logger(production, prefix) {
 	}
 	if (prefix == null || prefix.length == 0) prefix = null;
 
-	const log = function(type, message) {
+	const log = function(level, message) {
 		if (typeof message != "string") {
 			throw new TypeError("message must be of type string");
 		}
-		if (typeof type != "string" || !Object.keys(LogLevel).includes(type)) {
+		if (typeof level != "string" || !Object.keys(LogLevel).includes(level)) {
 			throw new TypeError("type must be a LogLevel");
 		}
-		const logType = LogLevel[type];
+		const logType = LogLevel[level];
 		if (production && !logType.production) return;
 		const prefixText = prefix != null ? bracket(prefix) + " " : "";
 		const typeText = bracket(color(logType.color, logType.name.toUpperCase()));

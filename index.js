@@ -49,6 +49,15 @@ function bracket(text) {
 }
 
 function Logger(production, prefix) {
+	if (production.data != null && prefix == null
+		&& production.data.production != null && production.data.prefix != null) {
+		prefix = production.data.prefix;
+		production = production.data.production;
+	} else if (typeof production == "object" && prefix == null
+		&& production.production != null && production.prefix != null) {
+		prefix = production.prefix;
+		production = production.production;
+	}
 	if (typeof production != "boolean") {
 		throw new TypeError("production must be of type boolean");
 	}
@@ -68,9 +77,9 @@ function Logger(production, prefix) {
 		if (production && !logType.production) return;
 		const prefixText = prefix != null ? bracket(prefix) + " " : "";
 		const typeText = bracket(color(logType.color, logType.name.toUpperCase()));
-		const log = `${prefixText}${typeText} ${message}`;
-		console[logType.error ? "error" : "log"](log);
-	}
+		const output = `${prefixText}${typeText} ${message}`;
+		console[logType.error ? "error" : "log"](output);
+	};
 
 	log.data = Object.freeze({ production, prefix });
 

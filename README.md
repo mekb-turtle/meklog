@@ -7,7 +7,7 @@
 Submodule the repository:\
 `git submodule add https://github.com/mekb-turtle/log`
 ```js
-const { Logger, LogLevel } = require("log")
+const { Logger, LogLevel } = require("./log")
 const log = new Logger(production: boolean, prefix: string);
 log(LogLevel.Info, "Hello, World!");
 ```

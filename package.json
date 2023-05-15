@@ -1,0 +1,13 @@
+{
+  "name": "log",
+  "description": "Node.js logging library",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mekb-turtle/log.git"
+  },
+  "keywords": [ "logging", "logger", "log" ],
+  "author": "mekb-turtle"
+}

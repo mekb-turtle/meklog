@@ -13,6 +13,13 @@ const LogLevel = {
 		production: true,
 		textColor: null
 	},
+	Success: {
+		name: "Success",
+		color: [ 38, 5, 10 ],
+		error: false,
+		production: true,
+		textColor: null
+	},
 	Warning: {
 		name: "Warning",
 		color: [ 38, 5, 11 ],

@@ -72,6 +72,8 @@ function Logger(production, prefix) {
 		console[logType.error ? "error" : "log"](log);
 	}
 
+	log.data = Object.freeze({ production, prefix });
+
 	return Object.freeze(log);
 }
 

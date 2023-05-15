@@ -1,6 +1,13 @@
 <div align="center">
-    <h1>Log</h1>
-    <h3 align="center">Node.js logging library</h3>
+    <h2 align="center">Node.js logging library</h2>
     <img alt="Stars" src="https://img.shields.io/github/stars/mekb-turtle/log?display_name=tag&style=for-the-badge" />
 </div>
 
+### Usage
+Submodule the repository:\
+`git submodule add https://github.com/mekb-turtle/log`
+```js
+const { Logger, LogLevel } = require("log")
+const log = new Logger(production: boolean, prefix: string);
+log(LogLevel.Info, "Hello, World!");
+```

@@ -56,36 +56,39 @@ function bracket(text) {
 }
 
 function Logger(production, prefix) {
-	if (production.data != null && prefix == null
-		&& production.data.production != null && production.data.prefix != null) {
-		prefix = production.data.prefix;
-		production = production.data.production;
-	} else if (typeof production == "object" && prefix == null
-		&& production.production != null && production.prefix != null) {
-		prefix = production.prefix;
-		production = production.production;
-	}
-	if (typeof production != "boolean") {
+	if (production != null && arguments.length === 1 && production.data != null && typeof production.data === "object")
+		production = production.data;
+
+	if (production != null && typeof production === "object" && arguments.length === 1 && typeof production.production === "boolean")
+		({ prefix, production } = production);
+
+	if (typeof production !== "boolean") {
 		throw new TypeError("production must be of type boolean");
 	}
-	if (prefix != null && typeof prefix != "string") {
+
+	if (prefix != null && typeof prefix !== "string") {
 		throw new TypeError("prefix must be of type string");
 	}
+
 	if (prefix == null || prefix.length == 0) prefix = null;
 
-	const log = function(level, message) {
-		if (typeof message != "string") {
-			throw new TypeError("message must be of type string");
-		}
-		if (typeof level != "string" || !Object.keys(LogLevel).includes(level)) {
+	const log = function(level, ...messages) {
+		if (typeof level !== "string" || !Object.keys(LogLevel).includes(level)) {
 			throw new TypeError("type must be a LogLevel");
+		}
+		for (const i in messages) {
+			if (typeof messages[i] !== "string") {
+				throw new TypeError("message must be a string");
+			}
 		}
 		const logType = LogLevel[level];
 		if (production && !logType.production) return;
 		const prefixText = prefix != null ? bracket(prefix) + " " : "";
 		const typeText = bracket(color(logType.color, logType.name.toUpperCase()));
-		const output = `${prefixText}${typeText} ${message}`;
-		console[logType.error ? "error" : "log"](output);
+		for (const i in messages) {
+			const output = `${prefixText}${typeText} ${messages[i]}`;
+			console[logType.error ? "error" : "log"](output);
+		}
 	};
 
 	log.data = Object.freeze({ production, prefix });

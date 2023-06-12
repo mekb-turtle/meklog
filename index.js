@@ -43,7 +43,7 @@ const LogLevel = {
 	}
 };
 
-const LogLevel_ = Object.freeze(Object.keys(LogLevel).reduce((r, v) => { r[v] = v; return r; }, {}));
+const LogLevel_ = Object.keys(LogLevel).reduce((r, v) => { r[v] = v; return r; }, {});
 
 function color(colors, text) {
 	if (colors == null) return text;
@@ -56,11 +56,13 @@ function bracket(text) {
 }
 
 function Logger(production, prefix) {
-	if (production != null && arguments.length === 1 && production.data != null && typeof production.data === "object")
+	if (production != null && arguments.length === 1 && production.data != null && typeof production.data === "object") {
 		production = production.data;
+	}
 
-	if (production != null && typeof production === "object" && arguments.length === 1 && typeof production.production === "boolean")
+	if (production != null && typeof production === "object" && arguments.length === 1 && typeof production.production === "boolean") {
 		({ prefix, production } = production);
+	}
 
 	if (typeof production !== "boolean") {
 		throw new TypeError("production must be of type boolean");
@@ -96,4 +98,4 @@ function Logger(production, prefix) {
 	return Object.freeze(log);
 }
 
-module.exports = { Logger, LogLevel: LogLevel_ };
+module.exports = { Logger, LogLevel: Object.freeze(LogLevel_) };

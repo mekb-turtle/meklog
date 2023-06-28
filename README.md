@@ -8,7 +8,7 @@
 ### Usage
 `npm i meklog`
 ```js
-const { Logger, LogLevel } = require("./log")
+const { Logger, LogLevel } = require("meklog")
 const log = new Logger(production: boolean, prefix: string);
 log(LogLevel.Info, "Hello, World!");
 ```

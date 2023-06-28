@@ -1,5 +1,5 @@
 {
-  "name": "log",
+  "name": "meklog",
   "description": "Node.js logging library",
   "main": "index.js",
   "scripts": {
@@ -9,5 +9,5 @@
     "url": "git+https://github.com/mekb-turtle/log.git"
   },
   "keywords": [ "logging", "logger", "log" ],
-  "author": "mekb-turtle"
+  "author": "mekb"
 }

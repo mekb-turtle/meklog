@@ -5,8 +5,7 @@
 </div>
 
 ### Usage
-Submodule the repository:\
-`git submodule add https://github.com/mekb-turtle/log`
+`npm i meklog`
 ```js
 const { Logger, LogLevel } = require("./log")
 const log = new Logger(production: boolean, prefix: string);

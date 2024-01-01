@@ -3,6 +3,9 @@ let i, log = new Logger(false);
 for (i in LogLevel) {
 	log(LogLevel[i], "Hello World!");
 }
+for (i in LogLevel) {
+	log(LogLevel[i], { foo: "bar", "foobar": 123 });
+}
 log = new Logger(log);
 for (i in LogLevel) {
 	log(LogLevel[i], "Hello World! - same settings from log function");

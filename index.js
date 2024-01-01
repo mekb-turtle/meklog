@@ -78,18 +78,15 @@ function Logger(production, prefix) {
 		if (typeof level !== "string" || !Object.keys(LogLevel).includes(level)) {
 			throw new TypeError("type must be a LogLevel");
 		}
-		for (const i in messages) {
-			if (typeof messages[i] !== "string") {
-				throw new TypeError("message must be a string");
-			}
-		}
 		const logType = LogLevel[level];
 		if (production && !logType.production) return;
 		const prefixText = prefix != null ? bracket(prefix) + " " : "";
 		const typeText = bracket(color(logType.color, logType.name.toUpperCase()));
 		for (const i in messages) {
-			const output = `${prefixText}${typeText} ${messages[i]}`;
-			console[logType.error ? "error" : "log"](output);
+			if (!messages.hasOwnProperty(i)) continue;
+			const output = `${prefixText}${typeText} `;
+			process[logType.error ? "stderr" : "stdout"].write(output);
+			console[logType.error ? "error" : "log"](messages[i]);
 		}
 	};
 

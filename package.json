@@ -1,6 +1,6 @@
 {
   "name": "meklog",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Node.js logging library",
   "main": "index.js",
   "repository": {
